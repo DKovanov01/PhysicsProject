@@ -177,11 +177,13 @@ void XMLAssetManager::AddBoxShape(const tinyxml2::XMLElement* child)
 
 	// So far, so good. Time to load in the data
 	// Use the helper function to read in a Vec3 from three floats
-	Vec3 boxCentre = ReadVec3(shapeTypeElement, "centreX", "centreY", "centreZ");
+	Vec3 centre = ReadVec3(shapeTypeElement, "centreX", "centreY", "centreZ");
 	Vec3 halfExtents = ReadVec3(shapeTypeElement, "halfExtentsX", "halfExtentsY", "halfExtentsZ");
-	Quaternion angleDeg; // It's THAT easy..? I thought I needed to put some variables in, evidently not :P
-
-	GEOMETRY::Box box(boxCentre, halfExtents, angleDeg);
+	float angle = shapeTypeElement->FloatAttribute("angleDeg");
+	Vec3 axis = ReadVec3(shapeTypeElement, "axisX", "axisY", "axisZ");
+	Quaternion orientation(angle, axis);
+	//QMath::rotate();
+	GEOMETRY::Box box(centre, halfExtents, orientation);
 	AddComponent<ShapeComponent>(shapeName, nullptr, box);
 }
 

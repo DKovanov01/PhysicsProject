@@ -23,83 +23,138 @@ Quaternion Box::getOrientation() const { return orientation; }
 
 void Box::generateVerticesAndNormals()
 {
-	//halfExtents.x, halfExtents.y, halfExtents.z; - half extents represent distance from the center of the cube to its faces along each axis
+	Vec3 vertex[8];
+	vertex[0] = Vec3(-halfExtents.x, halfExtents.y, halfExtents.z); // 0: topLeftFront
+	vertex[1] = Vec3(halfExtents.x, halfExtents.y, halfExtents.z); // 1: topRightFront
+	vertex[2] = Vec3(halfExtents.x, -halfExtents.y, halfExtents.z); // 2: bottomRightFront
+	vertex[3] = Vec3(-halfExtents.x, -halfExtents.y, halfExtents.z); // 3: bottomLeftFront
+
+	vertex[4] = Vec3(-halfExtents.x, halfExtents.y, -halfExtents.z); // 4: topLeftBack
+	vertex[5] = Vec3(halfExtents.x, halfExtents.y, -halfExtents.z); // 5: topRightBack
+	vertex[6] = Vec3(halfExtents.x, -halfExtents.y, -halfExtents.z); // 6: bottomRightBack
+	vertex[7] = Vec3(-halfExtents.x, -halfExtents.y, -halfExtents.z); // 7: bottomLeftBack
 	
-	/*Calculating each vertex :
-	// Front face
-	-halfExtents.x, -halfExtents.y, halfExtents.z; // 0: Bottom-Left
-	halfExtents.x, -halfExtents.y, halfExtents.z; // 1: Bottom-Right
-	halfExtents.x, halfExtents.y, halfExtents.z; // 2: Top-Right
-	-halfExtents.x, halfExtents.y, halfExtents.z;  // 3: Top-Left
+	for (int i = 0; i < 8; i++) { // for less lines of code :)
+		vertex[i] = QMath::rotate(vertex[i], orientation);
+		vertex[i] += centre;
+	}
 
-	// Back face
-	-halfExtents.x, -halfExtents.y, -halfExtents.z; // 4: Bottom-Left
-	halfExtents.x, -halfExtents.y, -halfExtents.z; // 5: Bottom-Right
-	halfExtents.x, halfExtents.y, -halfExtents.z; // 6: Top-Right
-	-halfExtents.x, halfExtents.y, -halfExtents.z;  // 7: Top-Left*/
+	Vec3 rightNormal = QMath::rotate(Vec3(1.0f, 0.0f, 0.0f), orientation);
+	Vec3 leftNormal = QMath::rotate(Vec3(-1.0f, 0.0f, 0.0f), orientation);
 
-    Vec3 vertex[8];
+	Vec3 frontNormal = QMath::rotate(Vec3(0.0f, 0.0f, 1.0f), orientation);
+	Vec3 backNormal = QMath::rotate(Vec3(0.0f, 0.0f, -1.0f), orientation);
 
-    vertex[0] = Vec3(-halfExtents.x, -halfExtents.y, halfExtents.z);
-    vertex[1] = Vec3(halfExtents.x, -halfExtents.y, halfExtents.z);
-    vertex[2] = Vec3(halfExtents.x, halfExtents.y, halfExtents.z);
-    vertex[3] = Vec3(-halfExtents.x, halfExtents.y, halfExtents.z);
+	Vec3 topNormal = QMath::rotate(Vec3(0.0f, 1.0f, 0.0f), orientation);
+	Vec3 bottomNormal = QMath::rotate(Vec3(0.0f, -1.0f, 0.0f), orientation);
 
-    vertex[4] = Vec3(-halfExtents.x, -halfExtents.y, -halfExtents.z);
-    vertex[5] = Vec3(halfExtents.x, -halfExtents.y, -halfExtents.z);
-    vertex[6] = Vec3(halfExtents.x, halfExtents.y, -halfExtents.z);
-    vertex[7] = Vec3(-halfExtents.x, halfExtents.y, -halfExtents.z);
+	// Front triangle 1
+	vertices.push_back(vertex[0]);
+	vertices.push_back(vertex[1]);
+	vertices.push_back(vertex[2]);
 
-    for (int i = 0; i < 8; i++)
-    {
-        vertex[i] = orientation * vertex[i];
-        vertex[i] += centre;
-    }
+	normals.push_back(frontNormal);
+	normals.push_back(frontNormal);
+	normals.push_back(frontNormal);
 
-    auto addTriangle = [&](Vec3 a, Vec3 b, Vec3 c, Vec3 normal)
-        {
-            vertices.push_back(a);
-            vertices.push_back(b);
-            vertices.push_back(c);
+	// Front triangle 2
+	vertices.push_back(vertex[0]);
+	vertices.push_back(vertex[2]);
+	vertices.push_back(vertex[3]);
 
-            normals.push_back(normal);
-            normals.push_back(normal);
-            normals.push_back(normal);
-        };
+	normals.push_back(frontNormal);
+	normals.push_back(frontNormal);
+	normals.push_back(frontNormal);
 
+	// Back triangle 1
+	vertices.push_back(vertex[4]);
+	vertices.push_back(vertex[6]);
+	vertices.push_back(vertex[5]);
 
-    // Calculate rotated face normals
-    Vec3 frontNormal = orientation * Vec3(0.0f, 0.0f, 1.0f);
-    Vec3 backNormal = orientation * Vec3(0.0f, 0.0f, -1.0f);
-    Vec3 topNormal = orientation * Vec3(0.0f, 1.0f, 0.0f);
-    Vec3 bottomNormal = orientation * Vec3(0.0f, -1.0f, 0.0f);
-    Vec3 rightNormal = orientation * Vec3(1.0f, 0.0f, 0.0f);
-    Vec3 leftNormal = orientation * Vec3(-1.0f, 0.0f, 0.0f);
+	normals.push_back(backNormal);
+	normals.push_back(backNormal);
+	normals.push_back(backNormal);
 
-    // Manually draw triangles with vertices
-    // Front
-    addTriangle(vertex[0], vertex[1], vertex[2], frontNormal);
-    addTriangle(vertex[0], vertex[2], vertex[3], frontNormal);
+	// Back triangle 2
+	vertices.push_back(vertex[4]);
+	vertices.push_back(vertex[7]);
+	vertices.push_back(vertex[6]);
 
-    // Back
-    addTriangle(vertex[4], vertex[6], vertex[5], backNormal);
-    addTriangle(vertex[4], vertex[7], vertex[6], backNormal);
+	normals.push_back(backNormal);
+	normals.push_back(backNormal);
+	normals.push_back(backNormal);
 
-    // Top
-    addTriangle(vertex[3], vertex[2], vertex[6], topNormal);
-    addTriangle(vertex[3], vertex[6], vertex[7], topNormal);
+	// Right triangle 1
+	vertices.push_back(vertex[1]);
+	vertices.push_back(vertex[5]);
+	vertices.push_back(vertex[6]);
 
-    // Bottom
-    addTriangle(vertex[0], vertex[5], vertex[1], bottomNormal);
-    addTriangle(vertex[0], vertex[4], vertex[5], bottomNormal);
+	normals.push_back(rightNormal);
+	normals.push_back(rightNormal);
+	normals.push_back(rightNormal);
 
-    // Right
-    addTriangle(vertex[1], vertex[5], vertex[6], rightNormal);
-    addTriangle(vertex[1], vertex[6], vertex[2], rightNormal);
+	// Right triangle 2
+	vertices.push_back(vertex[1]);
+	vertices.push_back(vertex[6]);
+	vertices.push_back(vertex[2]);
 
-    // Lleft
-    addTriangle(vertex[0], vertex[3], vertex[7], leftNormal);
-    addTriangle(vertex[0], vertex[7], vertex[4], leftNormal);
+	normals.push_back(rightNormal);
+	normals.push_back(rightNormal);
+	normals.push_back(rightNormal);
 
-    storeMeshData(GL_TRIANGLES);  
+	// Left triangle 1
+	vertices.push_back(vertex[0]);
+	vertices.push_back(vertex[3]);
+	vertices.push_back(vertex[7]);
+
+	normals.push_back(leftNormal);
+	normals.push_back(leftNormal);
+	normals.push_back(leftNormal);
+
+	// Left triangle 2
+	vertices.push_back(vertex[0]);
+	vertices.push_back(vertex[7]);
+	vertices.push_back(vertex[4]);
+
+	normals.push_back(leftNormal);
+	normals.push_back(leftNormal);
+	normals.push_back(leftNormal);
+
+	// Top triangle 1
+	vertices.push_back(vertex[3]);
+	vertices.push_back(vertex[2]);
+	vertices.push_back(vertex[6]);
+
+	normals.push_back(topNormal);
+	normals.push_back(topNormal);
+	normals.push_back(topNormal);
+
+	// Top triangle 2
+	vertices.push_back(vertex[3]);
+	vertices.push_back(vertex[6]);
+	vertices.push_back(vertex[7]);
+
+	normals.push_back(topNormal);
+	normals.push_back(topNormal);
+	normals.push_back(topNormal);
+
+	// Bottom triangle 1
+	vertices.push_back(vertex[0]);
+	vertices.push_back(vertex[5]);
+	vertices.push_back(vertex[1]);
+
+	normals.push_back(bottomNormal);
+	normals.push_back(bottomNormal);
+	normals.push_back(bottomNormal);
+
+	// Bottom triangle 2
+	vertices.push_back(vertex[0]);
+	vertices.push_back(vertex[4]);
+	vertices.push_back(vertex[5]);
+
+	normals.push_back(bottomNormal);
+	normals.push_back(bottomNormal);
+	normals.push_back(bottomNormal);
+
+	storeMeshData(GL_TRIANGLES);  
 }

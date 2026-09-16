@@ -1,4 +1,4 @@
-Tue Sep 15 08:15:47 2026
+Wed Sep 16 00:36:36 2026
 [INFO]: Starting the SceneManager
 [INFO]: OpenGL version: 4.6.0 NVIDIA 596.49
 [INFO]: Graphics card vendor NVIDIA Corporation
@@ -12,4 +12,3 @@ Tue Sep 15 08:15:47 2026
 "projection" loc:-1
 "view" loc:-1
 
-[INFO]: Deleting the SceneManager

@@ -5,7 +5,7 @@
 
 std::size_t usedMemoryTotal = 0;
 
-/*void usedMemoryAdd(std::size_t numBytes) {
+void usedMemoryAdd(std::size_t numBytes) {
     usedMemoryTotal += numBytes;
 }
 
@@ -15,18 +15,18 @@ void usedMemorySubtract(std::size_t numBytes) {
 
 void usedMemory() {
     std::cout << "memory used: " << usedMemoryTotal << "\n";
-}*/
+}
 
 void* operator new(std::size_t numBytes) {
     std::cout << "allocating " << numBytes << " bytes of memory\n";
-    //usedMemoryAdd(numBytes);
+    usedMemoryAdd(numBytes);
     //usedMemory();
     return std::malloc(numBytes);
 }
 
 void operator delete(void* memoryLocation, std::size_t numBytes) {
     std::cout << "freeing " << numBytes << " bytes of memory\n";
-    //usedMemorySubtract(numBytes);
+    usedMemorySubtract(numBytes);
     //usedMemory();
     std::free(memoryLocation);
 }
