@@ -1,0 +1,8 @@
+===== MEMORY MONITOR =====
+Total allocations: 200746
+Total frees: 200548
+Current allocations: 198
+Current memory: 8130440 bytes
+Peak memory: 12378482 bytes
+
+Potential memory leak detected.

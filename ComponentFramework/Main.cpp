@@ -1,7 +1,7 @@
 #include <memory>
 #include "SceneManager.h"
 #include "Debug.h"
-//#include "MemoryMonitor.h"
+#include "MemoryMonitor.h"
  
 int main(int argc, char* args[]) {
 	// We'll write info to a log file
@@ -12,5 +12,7 @@ int main(int argc, char* args[]) {
 	if (game->Initialize("Game Engine", 1280, 720) == true) {
 		game->Run();
 	}
+
+	writeMemoryLog();
 	return 0;
 }
