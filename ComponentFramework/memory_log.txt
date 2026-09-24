@@ -1,8 +1,798 @@
-===== MEMORY MONITOR =====
-Total allocations: 200746
-Total frees: 200548
-Current allocations: 198
-Current memory: 8130440 bytes
-Peak memory: 12378482 bytes
+========================================
+          MEMORY MONITOR REPORT
+========================================
 
-Potential memory leak detected.
+Total allocations:   200116
+Total frees:         199921
+Current allocations: 195
+Current memory:      8122289 bytes
+Peak allocations:    54837
+Peak memory:         12378484 bytes
+
+========================================
+       OUTSTANDING ALLOCATIONS
+========================================
+
+Allocation ID: 1
+Address: 000001DD42FB8EC0
+Size: 16 bytes
+
+Allocation ID: 4
+Address: 000001DD42FB5020
+Size: 32 bytes
+
+Allocation ID: 5
+Address: 000001DD42FB4E40
+Size: 32 bytes
+
+Allocation ID: 199134
+Address: 000001DD48417AC0
+Size: 16 bytes
+
+Allocation ID: 15
+Address: 000001DD42FB4960
+Size: 24 bytes
+
+Allocation ID: 56
+Address: 000001DD48234AE0
+Size: 8 bytes
+
+Allocation ID: 57
+Address: 000001DD4823D0F0
+Size: 144 bytes
+
+Allocation ID: 58
+Address: 000001DD48235CB0
+Size: 16 bytes
+
+Allocation ID: 59
+Address: 000001DD480F4B20
+Size: 72 bytes
+
+Allocation ID: 60
+Address: 000001DD48235990
+Size: 16 bytes
+
+Allocation ID: 61
+Address: 000001DD48227750
+Size: 128 bytes
+
+Allocation ID: 62
+Address: 000001DD4811BA20
+Size: 96 bytes
+
+Allocation ID: 63
+Address: 000001DD48235A30
+Size: 16 bytes
+
+Allocation ID: 64
+Address: 000001DD480F5030
+Size: 72 bytes
+
+Allocation ID: 65
+Address: 000001DD48235030
+Size: 16 bytes
+
+Allocation ID: 543
+Address: 000001DD4C4CEAE0
+Size: 1024 bytes
+
+Allocation ID: 199113
+Address: 000001DD480F5810
+Size: 72 bytes
+
+Allocation ID: 199114
+Address: 000001DD48418330
+Size: 16 bytes
+
+Allocation ID: 187354
+Address: 000001DD484175C0
+Size: 16 bytes
+
+Allocation ID: 187472
+Address: 000001DD480F5300
+Size: 80 bytes
+
+Allocation ID: 199110
+Address: 000001DD4C6CA180
+Size: 64787 bytes
+
+Allocation ID: 187473
+Address: 000001DD4811B700
+Size: 96 bytes
+
+Allocation ID: 199109
+Address: 000001DD4C6A2710
+Size: 64787 bytes
+
+Allocation ID: 199111
+Address: 000001DD4C3B0940
+Size: 43207 bytes
+
+Allocation ID: 80
+Address: 000001DD481470E0
+Size: 168 bytes
+
+Allocation ID: 81
+Address: 000001DD482357B0
+Size: 16 bytes
+
+Allocation ID: 82
+Address: 000001DD482349F0
+Size: 16 bytes
+
+Allocation ID: 83
+Address: 000001DD482356C0
+Size: 16 bytes
+
+Allocation ID: 86
+Address: 000001DD48235710
+Size: 16 bytes
+
+Allocation ID: 85
+Address: 000001DD480F4340
+Size: 72 bytes
+
+Allocation ID: 144
+Address: 000001DD48235BC0
+Size: 16 bytes
+
+Allocation ID: 196
+Address: 000001DD4822ACB0
+Size: 32 bytes
+
+Allocation ID: 195
+Address: 000001DD48235120
+Size: 16 bytes
+
+Allocation ID: 197
+Address: 000001DD480F4D60
+Size: 72 bytes
+
+Allocation ID: 139
+Address: 000001DD44AEAF40
+Size: 64 bytes
+
+Allocation ID: 193
+Address: 000001DD4C3C42A0
+Size: 218531 bytes
+
+Allocation ID: 194
+Address: 000001DD4C3F9880
+Size: 218531 bytes
+
+Allocation ID: 142
+Address: 000001DD482266D0
+Size: 128 bytes
+
+Allocation ID: 143
+Address: 000001DD48235B70
+Size: 16 bytes
+
+Allocation ID: 204
+Address: 000001DD48145A60
+Size: 168 bytes
+
+Allocation ID: 205
+Address: 000001DD48235440
+Size: 16 bytes
+
+Allocation ID: 206
+Address: 000001DD48235490
+Size: 16 bytes
+
+Allocation ID: 207
+Address: 000001DD48234C70
+Size: 16 bytes
+
+Allocation ID: 210
+Address: 000001DD48234D10
+Size: 16 bytes
+
+Allocation ID: 209
+Address: 000001DD480F3BF0
+Size: 72 bytes
+
+Allocation ID: 266
+Address: 000001DD48234E50
+Size: 16 bytes
+
+Allocation ID: 316
+Address: 000001DD4822A2F0
+Size: 32 bytes
+
+Allocation ID: 315
+Address: 000001DD482354E0
+Size: 16 bytes
+
+Allocation ID: 317
+Address: 000001DD480F4070
+Size: 72 bytes
+
+Allocation ID: 261
+Address: 000001DD44AEB140
+Size: 64 bytes
+
+Allocation ID: 313
+Address: 000001DD483C4A70
+Size: 145703 bytes
+
+Allocation ID: 314
+Address: 000001DD483E83E0
+Size: 145703 bytes
+
+Allocation ID: 264
+Address: 000001DD4823D6A0
+Size: 144 bytes
+
+Allocation ID: 265
+Address: 000001DD48234E00
+Size: 16 bytes
+
+Allocation ID: 324
+Address: 000001DD481453D0
+Size: 168 bytes
+
+Allocation ID: 325
+Address: 000001DD48235580
+Size: 16 bytes
+
+Allocation ID: 326
+Address: 000001DD48234DB0
+Size: 16 bytes
+
+Allocation ID: 327
+Address: 000001DD48234A40
+Size: 16 bytes
+
+Allocation ID: 330
+Address: 000001DD48234EA0
+Size: 16 bytes
+
+Allocation ID: 329
+Address: 000001DD480F4610
+Size: 72 bytes
+
+Allocation ID: 400
+Address: 000001DD48234F40
+Size: 16 bytes
+
+Allocation ID: 464
+Address: 000001DD4822A290
+Size: 32 bytes
+
+Allocation ID: 463
+Address: 000001DD48235620
+Size: 16 bytes
+
+Allocation ID: 465
+Address: 000001DD480F59C0
+Size: 72 bytes
+
+Allocation ID: 395
+Address: 000001DD44AEC3C0
+Size: 64 bytes
+
+Allocation ID: 461
+Address: 000001DD4B742070
+Size: 2488631 bytes
+
+Allocation ID: 462
+Address: 000001DD4B2E1070
+Size: 2488631 bytes
+
+Allocation ID: 398
+Address: 000001DD4823D770
+Size: 144 bytes
+
+Allocation ID: 399
+Address: 000001DD48235C60
+Size: 16 bytes
+
+Allocation ID: 472
+Address: 000001DD48145E20
+Size: 168 bytes
+
+Allocation ID: 473
+Address: 000001DD482355D0
+Size: 16 bytes
+
+Allocation ID: 474
+Address: 000001DD48234EF0
+Size: 16 bytes
+
+Allocation ID: 475
+Address: 000001DD48235C10
+Size: 16 bytes
+
+Allocation ID: 478
+Address: 000001DD48236840
+Size: 16 bytes
+
+Allocation ID: 477
+Address: 000001DD480F43D0
+Size: 72 bytes
+
+Allocation ID: 506
+Address: 000001DD48236390
+Size: 16 bytes
+
+Allocation ID: 528
+Address: 000001DD48229E70
+Size: 32 bytes
+
+Allocation ID: 527
+Address: 000001DD48236930
+Size: 16 bytes
+
+Allocation ID: 529
+Address: 000001DD480F4A00
+Size: 72 bytes
+
+Allocation ID: 501
+Address: 000001DD44AEC640
+Size: 64 bytes
+
+Allocation ID: 525
+Address: 000001DD481E3480
+Size: 504 bytes
+
+Allocation ID: 526
+Address: 000001DD44B63130
+Size: 504 bytes
+
+Allocation ID: 504
+Address: 000001DD48216290
+Size: 152 bytes
+
+Allocation ID: 505
+Address: 000001DD48236020
+Size: 16 bytes
+
+Allocation ID: 536
+Address: 000001DD481454C0
+Size: 168 bytes
+
+Allocation ID: 537
+Address: 000001DD48236660
+Size: 16 bytes
+
+Allocation ID: 538
+Address: 000001DD48235E90
+Size: 16 bytes
+
+Allocation ID: 539
+Address: 000001DD482368E0
+Size: 16 bytes
+
+Allocation ID: 542
+Address: 000001DD48235FD0
+Size: 16 bytes
+
+Allocation ID: 541
+Address: 000001DD480F54B0
+Size: 72 bytes
+
+Allocation ID: 570
+Address: 000001DD48235F30
+Size: 16 bytes
+
+Allocation ID: 594
+Address: 000001DD482362A0
+Size: 16 bytes
+
+Allocation ID: 571
+Address: 000001DD482366B0
+Size: 16 bytes
+
+Allocation ID: 593
+Address: 000001DD480F46A0
+Size: 72 bytes
+
+Allocation ID: 566
+Address: 000001DD44AEBBC0
+Size: 64 bytes
+
+Allocation ID: 590
+Address: 000001DD4840C340
+Size: 504 bytes
+
+Allocation ID: 591
+Address: 000001DD484245F0
+Size: 504 bytes
+
+Allocation ID: 569
+Address: 000001DD48217410
+Size: 152 bytes
+
+Allocation ID: 596
+Address: 000001DD44AEC6C0
+Size: 56 bytes
+
+Allocation ID: 599
+Address: 000001DD482361B0
+Size: 16 bytes
+
+Allocation ID: 598
+Address: 000001DD480F4DF0
+Size: 72 bytes
+
+Allocation ID: 605
+Address: 000001DD44AEB340
+Size: 56 bytes
+
+Allocation ID: 606
+Address: 000001DD48236480
+Size: 16 bytes
+
+Allocation ID: 607
+Address: 000001DD482299F0
+Size: 32 bytes
+
+Allocation ID: 608
+Address: 000001DD480F4E80
+Size: 72 bytes
+
+Allocation ID: 615
+Address: 000001DD44AEB3C0
+Size: 56 bytes
+
+Allocation ID: 616
+Address: 000001DD48236070
+Size: 16 bytes
+
+Allocation ID: 617
+Address: 000001DD4822AA70
+Size: 32 bytes
+
+Allocation ID: 618
+Address: 000001DD480F4580
+Size: 72 bytes
+
+Allocation ID: 625
+Address: 000001DD44AEB440
+Size: 56 bytes
+
+Allocation ID: 628
+Address: 000001DD482367F0
+Size: 16 bytes
+
+Allocation ID: 627
+Address: 000001DD480F5A50
+Size: 72 bytes
+
+Allocation ID: 635
+Address: 000001DD48216370
+Size: 152 bytes
+
+Allocation ID: 636
+Address: 000001DD482360C0
+Size: 16 bytes
+
+Allocation ID: 637
+Address: 000001DD44AEC440
+Size: 64 bytes
+
+Allocation ID: 638
+Address: 000001DD48235EE0
+Size: 16 bytes
+
+Allocation ID: 639
+Address: 000001DD482275D0
+Size: 128 bytes
+
+Allocation ID: 642
+Address: 000001DD48235F80
+Size: 16 bytes
+
+Allocation ID: 641
+Address: 000001DD480F3C80
+Size: 72 bytes
+
+Allocation ID: 679
+Address: 000001DD4811E300
+Size: 272 bytes
+
+Allocation ID: 680
+Address: 000001DD48236200
+Size: 16 bytes
+
+Allocation ID: 681
+Address: 000001DD480F5540
+Size: 80 bytes
+
+Allocation ID: 682
+Address: 000001DD48236110
+Size: 16 bytes
+
+Allocation ID: 685
+Address: 000001DD482363E0
+Size: 16 bytes
+
+Allocation ID: 684
+Address: 000001DD480F4730
+Size: 72 bytes
+
+Allocation ID: 692
+Address: 000001DD42F9B910
+Size: 192 bytes
+
+Allocation ID: 693
+Address: 000001DD48236160
+Size: 16 bytes
+
+Allocation ID: 696
+Address: 000001DD48236430
+Size: 16 bytes
+
+Allocation ID: 695
+Address: 000001DD480F47C0
+Size: 72 bytes
+
+Allocation ID: 700
+Address: 000001DD45F68180
+Size: 136 bytes
+
+Allocation ID: 701
+Address: 000001DD48236250
+Size: 16 bytes
+
+Allocation ID: 800
+Address: 000001DD4811B660
+Size: 96 bytes
+
+Allocation ID: 799
+Address: 000001DD480F48E0
+Size: 80 bytes
+
+Allocation ID: 1289
+Address: 000001DD4842AAE0
+Size: 1692 bytes
+
+Allocation ID: 1288
+Address: 000001DD4842A400
+Size: 1692 bytes
+
+Allocation ID: 1290
+Address: 000001DD48429AA0
+Size: 1128 bytes
+
+Allocation ID: 1315
+Address: 000001DD42FC1990
+Size: 16 bytes
+
+Allocation ID: 1314
+Address: 000001DD42FBEA80
+Size: 64 bytes
+
+Allocation ID: 1295
+Address: 000001DD44AEBE40
+Size: 64 bytes
+
+Allocation ID: 1296
+Address: 000001DD482365C0
+Size: 16 bytes
+
+Allocation ID: 1300
+Address: 000001DD48236570
+Size: 16 bytes
+
+Allocation ID: 1299
+Address: 000001DD44AEC4C0
+Size: 64 bytes
+
+Allocation ID: 1304
+Address: 000001DD48235E40
+Size: 16 bytes
+
+Allocation ID: 1303
+Address: 000001DD44AEC5C0
+Size: 64 bytes
+
+Allocation ID: 1308
+Address: 000001DD48236750
+Size: 16 bytes
+
+Allocation ID: 1307
+Address: 000001DD44AEC8C0
+Size: 64 bytes
+
+Allocation ID: 1312
+Address: 000001DD482367A0
+Size: 16 bytes
+
+Allocation ID: 1311
+Address: 000001DD44AEC940
+Size: 64 bytes
+
+Allocation ID: 1324
+Address: 000001DD482364D0
+Size: 16 bytes
+
+Allocation ID: 1323
+Address: 000001DD480F4F10
+Size: 72 bytes
+
+Allocation ID: 1351
+Address: 000001DD4823E950
+Size: 136 bytes
+
+Allocation ID: 1352
+Address: 000001DD48236520
+Size: 16 bytes
+
+Allocation ID: 1455
+Address: 000001DD4811C1A0
+Size: 96 bytes
+
+Allocation ID: 1454
+Address: 000001DD480F4BB0
+Size: 80 bytes
+
+Allocation ID: 14188
+Address: 000001DD4C713510
+Size: 97151 bytes
+
+Allocation ID: 14189
+Address: 000001DD4C6EBC00
+Size: 64783 bytes
+
+Allocation ID: 14187
+Address: 000001DD4C6FB950
+Size: 97151 bytes
+
+Allocation ID: 14192
+Address: 000001DD42FC1E90
+Size: 16 bytes
+
+Allocation ID: 14191
+Address: 000001DD480F4FA0
+Size: 72 bytes
+
+Allocation ID: 14195
+Address: 000001DD483C3630
+Size: 136 bytes
+
+Allocation ID: 14196
+Address: 000001DD48236610
+Size: 16 bytes
+
+Allocation ID: 14303
+Address: 000001DD4811C240
+Size: 96 bytes
+
+Allocation ID: 14302
+Address: 000001DD480F4220
+Size: 80 bytes
+
+Allocation ID: 14306
+Address: 000001DD48418650
+Size: 16 bytes
+
+Allocation ID: 14305
+Address: 000001DD480F5390
+Size: 72 bytes
+
+Allocation ID: 14309
+Address: 000001DD483C3CB0
+Size: 136 bytes
+
+Allocation ID: 14310
+Address: 000001DD48417B10
+Size: 16 bytes
+
+Allocation ID: 14421
+Address: 000001DD4811C380
+Size: 96 bytes
+
+Allocation ID: 14420
+Address: 000001DD480F50C0
+Size: 80 bytes
+
+Allocation ID: 186948
+Address: 000001DD4F9700B0
+Size: 491623 bytes
+
+Allocation ID: 186946
+Address: 000001DD4C72B0D0
+Size: 737411 bytes
+
+Allocation ID: 186947
+Address: 000001DD4FA3C050
+Size: 737411 bytes
+
+Allocation ID: 186951
+Address: 000001DD484186A0
+Size: 16 bytes
+
+Allocation ID: 186950
+Address: 000001DD480F3EC0
+Size: 72 bytes
+
+Allocation ID: 186954
+Address: 000001DD483C21E0
+Size: 136 bytes
+
+Allocation ID: 186955
+Address: 000001DD48418560
+Size: 16 bytes
+
+Allocation ID: 187070
+Address: 000001DD4811C560
+Size: 96 bytes
+
+Allocation ID: 187069
+Address: 000001DD480F5150
+Size: 80 bytes
+
+Allocation ID: 187347
+Address: 000001DD48411B80
+Size: 336 bytes
+
+Allocation ID: 187345
+Address: 000001DD44B63720
+Size: 504 bytes
+
+Allocation ID: 187346
+Address: 000001DD483B00E0
+Size: 504 bytes
+
+Allocation ID: 187350
+Address: 000001DD48417A20
+Size: 16 bytes
+
+Allocation ID: 187349
+Address: 000001DD480F5270
+Size: 72 bytes
+
+Allocation ID: 187353
+Address: 000001DD483C2E10
+Size: 136 bytes
+
+Allocation ID: 199142
+Address: 000001DD48417750
+Size: 16 bytes
+
+Allocation ID: 199141
+Address: 000001DD480F58A0
+Size: 72 bytes
+
+Allocation ID: 199140
+Address: 000001DD484183D0
+Size: 16 bytes
+
+Allocation ID: 199139
+Address: 000001DD480F56F0
+Size: 72 bytes
+
+Allocation ID: 199138
+Address: 000001DD48418380
+Size: 16 bytes
+
+Allocation ID: 199137
+Address: 000001DD480F5660
+Size: 72 bytes
+
+Allocation ID: 199135
+Address: 000001DD480F55D0
+Size: 72 bytes
+
+Allocation ID: 199136
+Address: 000001DD48417660
+Size: 16 bytes
+
+Allocation ID: 199131
+Address: 000001DD480F5420
+Size: 72 bytes
+
+Allocation ID: 199132
+Address: 000001DD48417A70
+Size: 16 bytes
+
+Allocation ID: 199133
+Address: 000001DD480F5930
+Size: 72 bytes
+
+========================================
+RESULT: Potential memory leak detected.
+========================================

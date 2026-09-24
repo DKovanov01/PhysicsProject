@@ -43,7 +43,7 @@
 			  <!--TODO for Assignment 1-->
 			  <Box centreX="0.0" centreY="0.0" centreZ="0.0"
 				   halfExtentsX="1.0" halfExtentsY="1.0" halfExtentsZ="1.0"
-				   angleDeg="0.0" axisX="1.0" axisY="0.0" axisZ="0.0"
+				   angleDeg="45.0" axisX="40.0" axisY="0.0" axisZ="0.0"
 				/>
 		  </Shape>
 	  </Mesh>

@@ -1,32 +1,139 @@
 #ifndef MEMORYMONITOR_H
 #define MEMORYMONITOR_H
 #include <iostream>
-#include <memory>
+//#include <memory>
 #include <fstream>
+#include <cstddef>
+#include <cstdlib>
 
+constexpr std::size_t MAX_TRACKED_ALLOCATIONS = 100000; // Instead of storing allocations in a vector/unordered map, since those take up memory as well;
+
+struct AllocationRecord
+{
+    void* address; // address in memory;
+    std::size_t size; // how many bytes were allocated
+    std::size_t allocationID; // #1, #2, etc - helps track which ones are which
+};
+
+AllocationRecord allocations[MAX_TRACKED_ALLOCATIONS]; // uses the maxed number from above, this actually starts up the database
+std::size_t allocationCount = 0; // how many entries are currently used;
 std::size_t usedMemoryTotal = 0;
 std::size_t totalAllocations = 0;
 std::size_t totalFrees = 0;
 std::size_t peakMemory = 0;
+std::size_t peakAllocations = 0; // counts how many allocations were active max at the same time;
+std::size_t nextAllocationID = 1; // ID counter;
 
-void usedMemoryAdd(std::size_t numBytes)
+void usedMemoryAdd(void* address, std::size_t numBytes)
 {
     usedMemoryTotal += numBytes;
     totalAllocations++;
 
-    if (usedMemoryTotal > peakMemory)
+    if (usedMemoryTotal > peakMemory) // check peak memory
         peakMemory = usedMemoryTotal;
+
+    if (allocationCount + 1 > peakAllocations) // check peak allocation count
+        peakAllocations = allocationCount + 1;
+
+    if (allocationCount < MAX_TRACKED_ALLOCATIONS) // record the allocation if we still have space for the counter;
+    {
+        allocations[allocationCount].address = address;
+        allocations[allocationCount].size = numBytes;
+        allocations[allocationCount].allocationID = nextAllocationID++;
+
+        allocationCount++;
+    }
 }
 
-void usedMemorySubtract(std::size_t numBytes)
+void usedMemorySubtract(void* address, std::size_t numBytes)
 {
     usedMemoryTotal -= numBytes;
     totalFrees++;
+       
+    for (std::size_t i = 0; i < allocationCount; i++) // Find the allocation that corresponds to this address
+    {
+        if (allocations[i].address == address)
+        {
+            allocations[i] = allocations[allocationCount - 1]; // Replace the removed entry with the last entry
+
+            allocationCount--;
+
+            return;
+        }
+    }
 }
 
-//void usedMemory() {
-//    std::cout << "memory used: " << usedMemoryTotal << "\n";
-//}
+void* operator new(std::size_t numBytes) {
+    void* memory = std::malloc(numBytes);
+
+    if (memory)
+    {
+        usedMemoryAdd(memory, numBytes);
+    }
+
+    return memory;
+}
+
+void operator delete(void* memoryLocation, std::size_t numBytes) noexcept { // sized delete
+    if (memoryLocation)
+    {
+        usedMemorySubtract(memoryLocation, numBytes);
+        std::free(memoryLocation);
+    }
+}
+
+void operator delete(void* memoryLocation) noexcept { // unsized delete
+    if (memoryLocation) {
+        for (std::size_t i = 0; i < allocationCount; i++) { // Find the allocation ourselves because this version doesn't give us the size.
+            if (allocations[i].address == memoryLocation)
+            {
+                std::size_t size = allocations[i].size;
+
+                usedMemorySubtract(memoryLocation, size);
+
+                std::free(memoryLocation);
+
+                return;
+            }
+        }
+                
+        std::free(memoryLocation); // If we couldn't find it, still free the memory.
+    }
+}
+
+void* operator new[](std::size_t numBytes) {
+    void* memory = std::malloc(numBytes);
+
+    if (memory) {
+        usedMemoryAdd(memory, numBytes);
+    }
+
+    return memory;
+}
+
+void operator delete[](void* memoryLocation, std::size_t numBytes) noexcept {
+    if (memoryLocation) {
+        usedMemorySubtract(memoryLocation, numBytes);
+        std::free(memoryLocation);
+    }
+}
+
+void operator delete[](void* memoryLocation) noexcept {
+    if (memoryLocation) {
+        for (std::size_t i = 0; i < allocationCount; i++) {
+            if (allocations[i].address == memoryLocation) {
+                std::size_t size = allocations[i].size;
+
+                usedMemorySubtract(memoryLocation, size);
+
+                std::free(memoryLocation);
+
+                return;
+            }
+        }
+        std::free(memoryLocation);
+    }
+}
 
 void writeMemoryLog()
 {
@@ -35,54 +142,65 @@ void writeMemoryLog()
     if (!file.is_open())
         return;
 
-    file << "===== MEMORY MONITOR =====\n";
-    file << "Total allocations: " << totalAllocations << "\n";
-    file << "Total frees: " << totalFrees << "\n";
-    file << "Current allocations: " << totalAllocations - totalFrees << "\n";
-    file << "Current memory: " << usedMemoryTotal << " bytes\n";
-    file << "Peak memory: " << peakMemory << " bytes\n";
+    file << "========================================\n";
+    file << "          MEMORY MONITOR REPORT\n";
+    file << "========================================\n\n";
+
+    file << "Total allocations:   "
+        << totalAllocations << "\n";
+
+    file << "Total frees:         "
+        << totalFrees << "\n";
+
+    file << "Current allocations: "
+        << allocationCount << "\n";
+
+    file << "Current memory:      "
+        << usedMemoryTotal << " bytes\n";
+
+    file << "Peak allocations:    "
+        << peakAllocations << "\n";
+
+    file << "Peak memory:         "
+        << peakMemory << " bytes\n";
+
+    file << "\n========================================\n";
+    file << "       OUTSTANDING ALLOCATIONS\n";
+    file << "========================================\n\n";
+
+    if (allocationCount == 0)
+    {
+        file << "No outstanding allocations.\n";
+    }
+    else
+    {
+        for (std::size_t i = 0; i < allocationCount; i++)
+        {
+            file << "Allocation ID: "
+                << allocations[i].allocationID << "\n";
+
+            file << "Address: "
+                << allocations[i].address << "\n";
+
+            file << "Size: "
+                << allocations[i].size
+                << " bytes\n\n";
+        }
+    }
+
+    file << "========================================\n";
 
     if (usedMemoryTotal == 0)
-        file << "\nNo outstanding memory allocations.\n";
+    {
+        file << "RESULT: No outstanding memory.\n";
+    }
     else
-        file << "\nPotential memory leak detected.\n";
-}
+    {
+        file << "RESULT: Potential memory leak detected.\n";
+    }
 
-void* operator new(std::size_t numBytes) {
-    //std::cout << "allocating " << numBytes << " bytes of memory\n";
-    usedMemoryAdd(numBytes);
-    //usedMemory();
-    return std::malloc(numBytes);
+    file << "========================================\n";
 }
-
-void operator delete(void* memoryLocation, std::size_t numBytes) {
-    //std::cout << "freeing " << numBytes << " bytes of memory\n";
-    usedMemorySubtract(numBytes);
-    //usedMemory();
-    std::free(memoryLocation);
-}
-/*
-/// This is a trick to get access to numBytes 
-/// w/o wild typecasts. 
-struct ArraySize {
-    std::size_t numBytes;
-};
-
-/// I did a little hack to hide the total number of bytes allocated in the array itself. 
-void* operator new[](std::size_t numBytes) {
-    std::cout << "allocating an array of " << numBytes << " bytes of memory\n";
-    ArraySize* array = reinterpret_cast<ArraySize*>(std::malloc(numBytes + sizeof(ArraySize)));
-    if (array) array->numBytes = numBytes;
-    usedMemoryAdd(numBytes);
-    return array + 1;
-}
-
-/// This overload doesn't work as advertised in VS22
-void operator delete[](void* memoryLocation) {
-    ArraySize* array = reinterpret_cast<ArraySize*>(memoryLocation) - 1;
-    std::cout << "freeing array " << array->numBytes << " bytes of memory\n";
-    usedMemorySubtract(array->numBytes);
-    free(array);
-}*/
 
 #endif
+
